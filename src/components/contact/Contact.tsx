@@ -9,10 +9,10 @@ export function Contact() {
           Interested in working together? Reach out below.
         </p>
         <a
-          href="mailto:you@example.com"
+          href="mailto:vinaymishra9925@gmail.com"
           className="mt-8 inline-block rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
-          you@example.com
+          vinaymishra9925@gmail.com
         </a>
       </div>
     </section>

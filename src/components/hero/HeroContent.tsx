@@ -52,7 +52,7 @@ export function HeroContent() {
         ref={headingRef}
         className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl"
       >
-        Your Name
+        Mishra Vinay
       </h1>
       <p
         ref={taglineRef}
