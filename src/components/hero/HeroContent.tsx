@@ -46,7 +46,7 @@ export function HeroContent() {
   return (
     <div
       ref={containerRef}
-      className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-6 text-center"
+      className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-6 text-center md:items-start md:pl-[8vw] md:pr-[45%] md:text-left"
     >
       <h1
         ref={headingRef}
@@ -62,7 +62,7 @@ export function HeroContent() {
       </p>
       <div
         ref={cueRef}
-        className="absolute bottom-10 flex flex-col items-center gap-2 text-foreground/50"
+        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-foreground/50"
       >
         <span className="text-xs uppercase tracking-widest">Scroll</span>
         <svg
