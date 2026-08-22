@@ -1,3 +1,5 @@
+import { ProjectCard } from "./ProjectCard";
+
 type Project = {
   name: string;
   badge?: string;
@@ -90,23 +92,25 @@ const PROJECTS: Project[] = [
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCardContent({ project }: { project: Project }) {
   return (
-    <div
-      className={`rounded-xl border border-foreground/10 p-6 ${
-        project.featured ? "border-accent/40 sm:col-span-2 md:col-span-3" : ""
-      }`}
-    >
+    <ProjectCard featured={project.featured}>
       <div className="flex flex-wrap items-center gap-3">
-        <h3 className="text-lg font-medium text-foreground">
+        <h3 className="text-lg font-medium text-foreground transition-colors duration-300 group-hover:text-accent">
           {project.href ? (
             <a
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
+              className="inline-flex items-center gap-1.5"
             >
               {project.name}
+              <span
+                aria-hidden
+                className="inline-block -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+              >
+                →
+              </span>
             </a>
           ) : (
             project.name
@@ -126,18 +130,18 @@ function ProjectCard({ project }: { project: Project }) {
         {project.tech.map((tag) => (
           <span
             key={tag}
-            className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs text-accent"
+            className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs text-accent transition-colors duration-300 group-hover:bg-accent/20"
           >
             {tag}
           </span>
         ))}
       </div>
-      <ul className="mt-4 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-foreground/70">
+      <ul className="mt-4 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:text-foreground/85">
         {project.bullets.map((bullet) => (
           <li key={bullet}>{bullet}</li>
         ))}
       </ul>
-    </div>
+    </ProjectCard>
   );
 }
 
@@ -150,7 +154,7 @@ export function Projects() {
         </h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {PROJECTS.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+            <ProjectCardContent key={project.name} project={project} />
           ))}
         </div>
         <a
