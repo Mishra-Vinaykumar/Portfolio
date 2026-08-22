@@ -1,4 +1,4 @@
-import { ProjectCard } from "./ProjectCard";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 type Project = {
   name: string;
@@ -94,7 +94,13 @@ const PROJECTS: Project[] = [
 
 function ProjectCardContent({ project }: { project: Project }) {
   return (
-    <ProjectCard featured={project.featured}>
+    <SpotlightCard
+      className={`p-6 ${
+        project.featured
+          ? "border-accent/40 sm:col-span-2 md:col-span-3"
+          : ""
+      }`}
+    >
       <div className="flex flex-wrap items-center gap-3">
         <h3 className="text-lg font-medium text-foreground transition-colors duration-300 group-hover:text-accent">
           {project.href ? (
@@ -141,7 +147,7 @@ function ProjectCardContent({ project }: { project: Project }) {
           <li key={bullet}>{bullet}</li>
         ))}
       </ul>
-    </ProjectCard>
+    </SpotlightCard>
   );
 }
 
