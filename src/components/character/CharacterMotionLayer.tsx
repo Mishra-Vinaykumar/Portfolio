@@ -39,7 +39,7 @@ export function CharacterMotionLayer() {
   if (disabled) return null;
 
   return (
-    <div ref={wrapperRef} className="pointer-events-none fixed inset-0">
+    <div ref={wrapperRef} className="pointer-events-none fixed inset-0 z-10">
       {visible && (
         <Canvas orthographic frameloop="demand" gl={{ alpha: true }}>
           <CharacterPlane fadeTargetRef={wrapperRef} />

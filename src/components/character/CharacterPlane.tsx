@@ -5,11 +5,7 @@ import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  CHARACTER_FRAMES,
-  CHARACTER_PLANE_HEIGHT_FRACTION,
-  MOTION_PORTION,
-} from "./frames";
+import { CHARACTER_FRAMES, MOTION_PORTION } from "./frames";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -30,8 +26,6 @@ export function CharacterPlane({
   const frameIndexRef = useRef(0);
   const applyCurrentTextureRef = useRef<() => void>(() => {});
   const { viewport, invalidate } = useThree();
-
-  const planeSize = viewport.height * CHARACTER_PLANE_HEIGHT_FRACTION;
 
   // Imperative texture loading: drei's suspending useTexture would bubble
   // the suspension out of the Canvas during hydration and unmount the whole
@@ -92,6 +86,8 @@ export function CharacterPlane({
       mesh.position.x = viewport.width * lerp(from.x, to.x, frac);
       mesh.position.y = viewport.height * lerp(from.y, to.y, frac);
       mesh.rotation.z = lerp(from.rotationZ, to.rotationZ, frac);
+      const size = viewport.height * lerp(from.scale, to.scale, frac);
+      mesh.scale.set(size, size, 1);
 
       const activeIndex = motionProgress === 0 ? 0 : Math.round(scaled);
       if (activeIndex !== frameIndexRef.current) {
@@ -126,7 +122,7 @@ export function CharacterPlane({
   }, [viewport.width, viewport.height, fadeTargetRef, invalidate]);
 
   return (
-    <mesh ref={meshRef} scale={[planeSize, planeSize, 1]} visible={false}>
+    <mesh ref={meshRef} visible={false}>
       <planeGeometry args={[1, 1]} />
       <meshBasicMaterial
         ref={materialRef}
