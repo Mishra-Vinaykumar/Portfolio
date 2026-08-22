@@ -11,8 +11,8 @@ export function About() {
         <p className="mt-6 text-lg leading-8 text-foreground/70">
           I&apos;m Vinay, a full-stack developer who enjoys turning real
           problems into practical tools. Right now I&apos;m working with a
-          team on a CRM platform built on the MERN stack — MongoDB, Express,
-          React, and Node.js — developing features across both the frontend
+          team on a CRM platform built on the MERN stack (MongoDB, Express,
+          React, and Node.js), developing features across both the frontend
           and the API.
         </p>
         <p className="mt-4 text-lg leading-8 text-foreground/70">
